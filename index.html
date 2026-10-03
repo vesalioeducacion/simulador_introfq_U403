@@ -1,0 +1,1482 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>INTRODUCCIÓN A LA FISICOQUÍMICA - Enlaces Químicos, Estructuras de Lewis y Biomateriales (Facultad de Cs. Médicas - UCCuyo)</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts: Outfit -->
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Phosphor Icons -->
+    <script src="https://unpkg.com/@phosphor-icons/web"></script>
+    <style>
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: #f7f9f6;
+        }
+        /* Paleta Institucional UCCuyo (Verde Oliva) */
+        .text-accent { color: #436600; }
+        .text-accent-dark { color: #324d00; }
+        .bg-accent { background-color: #436600; }
+        .bg-accent-hover:hover { background-color: #324d00; }
+        .bg-accent-light { background-color: #f1f6eb; }
+        .border-accent { border-color: #436600; }
+
+        .text-primary { color: #436600; }
+        .bg-primary { background-color: #436600; }
+        .bg-primary-dark { background-color: #324d00; }
+        .border-primary { border-color: #436600; }
+
+        .focus-accent:focus {
+            border-color: #436600;
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(67, 102, 0, 0.2);
+        }
+
+        .custom-scroll::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
+        }
+        .custom-scroll::-webkit-scrollbar-track {
+            background: #f1f1f1;
+            border-radius: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scroll::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+
+        .canvas-bg {
+            background-color: #ffffff;
+            background-image: radial-gradient(#e2e8f0 1px, transparent 1px);
+            background-size: 16px 16px;
+        }
+    </style>
+</head>
+<body class="text-gray-800 min-h-screen flex flex-col justify-between">
+
+    <!-- Header Institucional UCCuyo -->
+    <header class="bg-white border-b border-gray-200 shadow-sm sticky top-0 z-50">
+        <div class="max-w-6xl mx-auto px-4 py-4 flex items-center justify-between">
+            <div class="flex items-center gap-3">
+                <div class="w-10 h-10 rounded-lg bg-accent flex items-center justify-center text-white font-bold text-xl shadow-md">
+                    K
+                </div>
+                <div>
+                    <h1 class="text-lg font-bold text-gray-800 tracking-wide uppercase">INTRODUCCIÓN A LA FISICOQUÍMICA</h1>
+                    <p class="text-xs text-gray-500 font-semibold">Lic. en Kinesiología y Fisiatría (Facultad de Cs. Médicas - UCCuyo)</p>
+                </div>
+            </div>
+            
+            <!-- Botón Guía de Uso -->
+            <button onclick="openTutorial()" class="flex items-center gap-1.5 px-3 py-1.5 bg-accent text-white text-xs font-semibold rounded-lg shadow-sm hover:opacity-90 transition">
+                <i class="ph-bold ph-book-open text-sm"></i>
+                Guía de Uso
+            </button>
+        </div>
+    </header>
+
+    <!-- Contenido Principal -->
+    <main class="max-w-6xl mx-auto px-4 py-6 flex-1 w-full flex flex-col lg:flex-row gap-6">
+
+        <!-- Barra de Navegación Lateral -->
+        <nav class="w-full lg:w-64 flex flex-row lg:flex-col gap-2 bg-white p-3 rounded-2xl shadow-sm border border-gray-100 overflow-x-auto lg:overflow-x-visible whitespace-nowrap lg:whitespace-normal sticky top-20 h-fit">
+            <button onclick="switchTab('tab-lewis')" id="btn-tab-lewis" class="bg-accent text-white flex-1 lg:flex-none text-left py-2.5 px-4 rounded-xl text-sm font-semibold transition shadow-sm">
+                1. Símbolos de Lewis y Octeto
+            </button>
+            <button onclick="switchTab('tab-ionico')" id="btn-tab-ionico" class="text-gray-700 hover:bg-gray-100 flex-1 lg:flex-none text-left py-2.5 px-4 rounded-xl text-sm font-medium transition">
+                2. Laboratorio Enlace Iónico
+            </button>
+            <button onclick="switchTab('tab-covalente')" id="btn-tab-covalente" class="text-gray-700 hover:bg-gray-100 flex-1 lg:flex-none text-left py-2.5 px-4 rounded-xl text-sm font-medium transition">
+                3. Estación Enlace Covalente
+            </button>
+            <button onclick="switchTab('tab-metalico')" id="btn-tab-metalico" class="text-gray-700 hover:bg-gray-100 flex-1 lg:flex-none text-left py-2.5 px-4 rounded-xl text-sm font-medium transition">
+                4. Mar de Electrones Metálico
+            </button>
+            <button onclick="switchTab('tab-casos')" id="btn-tab-casos" class="text-gray-700 hover:bg-gray-100 flex-1 lg:flex-none text-left py-2.5 px-4 rounded-xl text-sm font-medium transition">
+                5. Bioenlaces y Biomateriales
+            </button>
+        </nav>
+
+        <!-- Área de Trabajo de Módulos -->
+        <div class="flex-1 w-full space-y-6">
+
+            <!-- ============================================================== -->
+            <!-- MÓDULO 1: SÍMBOLOS DE LEWIS Y REGLA DEL OCTETO (EXCEPCIONES)   -->
+            <!-- ============================================================== -->
+            <section id="tab-lewis" class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 space-y-6">
+                <div class="border-b border-gray-100 pb-4">
+                    <span class="text-xs font-bold text-accent tracking-wider uppercase">MÓDULO 1</span>
+                    <h2 class="text-xl font-bold text-gray-800">Símbolos de Lewis y Regla del Octeto</h2>
+                    <p class="text-xs text-gray-500 mt-1">
+                        Representación de los electrones de la capa más externa mediante puntos y análisis de excepciones: octeto deficiente (BF₃) y octeto expandido (SF₆).
+                    </p>
+                </div>
+
+                <!-- Selector de Elementos y Moléculas de Lewis -->
+                <div class="flex flex-wrap items-center justify-between gap-2 bg-gray-50 p-3 rounded-2xl border border-gray-200 text-xs">
+                    <span class="font-bold text-gray-700 flex items-center gap-1.5">
+                        <i class="ph-bold ph-dots-nine text-accent"></i> Estructura a Analizar:
+                    </span>
+                    <div class="flex flex-wrap gap-1.5">
+                        <button onclick="selectLewisStructure('C')" id="btn-lew-C" class="px-3 py-1.5 rounded-lg font-bold bg-white text-gray-700 border border-gray-200 hover:bg-gray-100 transition">
+                            Carbono (C - 4 e⁻)
+                        </button>
+                        <button onclick="selectLewisStructure('N')" id="btn-lew-N" class="px-3 py-1.5 rounded-lg font-bold bg-white text-gray-700 border border-gray-200 hover:bg-gray-100 transition">
+                            Nitrógeno (N - 5 e⁻)
+                        </button>
+                        <button onclick="selectLewisStructure('O')" id="btn-lew-O" class="px-3 py-1.5 rounded-lg font-bold bg-white text-gray-700 border border-gray-200 hover:bg-gray-100 transition">
+                            Oxígeno (O - 6 e⁻)
+                        </button>
+                        <button onclick="selectLewisStructure('Ne')" id="btn-lew-Ne" class="px-3 py-1.5 rounded-lg font-bold bg-accent text-white shadow-xs transition">
+                            Neón (Ne - Octeto Completo)
+                        </button>
+                        <button onclick="selectLewisStructure('BF3')" id="btn-lew-BF3" class="px-3 py-1.5 rounded-lg font-bold bg-white text-amber-800 border border-amber-300 hover:bg-amber-50 transition">
+                            BF₃ (Octeto Deficiente)
+                        </button>
+                        <button onclick="selectLewisStructure('SF6')" id="btn-lew-SF6" class="px-3 py-1.5 rounded-lg font-bold bg-white text-purple-800 border border-purple-300 hover:bg-purple-50 transition">
+                            SF₆ (Octeto Expandido)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Canvas de Estructuras de Lewis en Alta Fidelidad -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                    <div class="lg:col-span-7 flex flex-col items-center">
+                        <div class="w-full relative rounded-2xl border border-gray-200 overflow-hidden shadow-inner canvas-bg p-2">
+                            <canvas id="canvas-lewis" width="520" height="260" class="w-full h-auto block"></canvas>
+                        </div>
+                        <span class="text-[11px] text-gray-400 mt-2 text-center">
+                            Diagrama de puntos de Lewis: pares enlazantes y pares solitarios alrededor del símbolo químico nuclear.
+                        </span>
+                    </div>
+
+                    <div class="lg:col-span-5 space-y-3">
+                        <div id="lewis-detail-box" class="p-4 bg-gray-50 rounded-xl border border-gray-200 text-xs text-gray-700 space-y-2 leading-relaxed">
+                            <strong class="text-accent block text-sm" id="lewis-title">Neón (Ne, Z=10 · Octeto Completo Estable):</strong>
+                            <p id="lewis-desc">
+                                Posee 8 electrones de valencia distribuidos en 4 pares solitarios estables (2s² 2p⁶). Representa el modelo termodinámico de máxima inercia química que los demás elementos buscan alcanzar mediante enlace iónico o covalente.
+                            </p>
+                        </div>
+
+                        <!-- Cuestionario Formativo Inmediato -->
+                        <div class="p-3.5 bg-accent-light rounded-xl border border-accent/20 text-xs space-y-2">
+                            <strong class="text-accent block">Pregunta de Razonamiento del Octeto:</strong>
+                            <p class="text-gray-700">En la molécula de Trifluoruro de Boro (BF₃), ¿cuántos electrones rodean al átomo central de boro en la estructura estable?</p>
+                            <div class="flex gap-2 pt-1">
+                                <button onclick="checkLewisQuestion(6)" class="px-3 py-1.5 bg-white border border-gray-200 hover:border-accent rounded-lg font-bold transition text-gray-800">
+                                    6 electrones (Octeto deficiente)
+                                </button>
+                                <button onclick="checkLewisQuestion(8)" class="px-3 py-1.5 bg-white border border-gray-200 hover:border-accent rounded-lg font-bold transition text-gray-800">
+                                    8 electrones (Regla clásica)
+                                </button>
+                                <button onclick="checkLewisQuestion(12)" class="px-3 py-1.5 bg-white border border-gray-200 hover:border-accent rounded-lg font-bold transition text-gray-800">
+                                    12 electrones (Hipervalente)
+                                </button>
+                            </div>
+                            <div id="feedback-lewis" class="hidden mt-2 p-2.5 rounded-lg text-xs leading-relaxed"></div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================================== -->
+            <!-- MÓDULO 2: LABORATORIO DE ENLACE IÓNICO                         -->
+            <!-- ============================================================== -->
+            <section id="tab-ionico" class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 space-y-6 hidden">
+                <div class="border-b border-gray-100 pb-4">
+                    <span class="text-xs font-bold text-accent tracking-wider uppercase">MÓDULO 2</span>
+                    <h2 class="text-xl font-bold text-gray-800">Laboratorio de Enlace Iónico: Transferencia y Red Cristalina</h2>
+                    <p class="text-xs text-gray-500 mt-1">
+                        Transferencia electrónica irreversible desde el metal electropositivo (catión Na⁺) hacia el no metal electronegativo (anión Cl⁻) y ensamblaje de la red cristalina cúbica de NaCl.
+                    </p>
+                </div>
+
+                <!-- Controles de la Simulación Iónica -->
+                <div class="flex flex-wrap items-center justify-between gap-3 bg-gray-50 p-3 rounded-2xl border border-gray-200 text-xs">
+                    <span class="font-bold text-gray-700 flex items-center gap-1.5">
+                        <i class="ph-bold ph-lightning text-accent"></i> Fase de Reacción Fisicoquímica:
+                    </span>
+                    <div class="flex gap-2">
+                        <button onclick="triggerIonicTransfer()" id="btn-ionic-transfer" class="px-3.5 py-1.5 rounded-lg font-bold bg-accent hover:bg-accent-dark text-white shadow-xs flex items-center gap-1.5 transition">
+                            <i class="ph-bold ph-arrow-right"></i> Transferir Electrón (Na → Cl)
+                        </button>
+                        <button onclick="toggleCrystalView()" id="btn-toggle-crystal" class="px-3.5 py-1.5 rounded-lg font-bold bg-white text-gray-700 border border-gray-200 hover:bg-gray-100 flex items-center gap-1.5 transition">
+                            <i class="ph-bold ph-cube"></i> <span id="lbl-crystal-btn">Ver Red Cristalina de NaCl</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Canvas de Transferencia y Red Cristalina -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                    <div class="lg:col-span-7 flex flex-col items-center">
+                        <div class="w-full relative rounded-2xl border border-gray-200 overflow-hidden shadow-inner canvas-bg p-2">
+                            <canvas id="canvas-ionico" width="520" height="260" class="w-full h-auto block"></canvas>
+                        </div>
+                        <span class="text-[11px] text-gray-400 mt-2 text-center">
+                            Dinámica de atracción electrostática: ley de Coulomb y empaquetamiento cúbico centrado en las caras de cloruro de sodio.
+                        </span>
+                    </div>
+
+                    <div class="lg:col-span-5 space-y-3">
+                        <div id="ionic-detail-box" class="p-4 bg-gray-50 rounded-xl border border-gray-200 text-xs text-gray-700 space-y-2 leading-relaxed">
+                            <strong class="text-accent block text-sm">Mecanismo Electroquímico de Enlace Iónico:</strong>
+                            <p>
+                                El Sodio (Na, [Ne] 3s¹) posee baja energía de ionización y cede su único electrón de valencia. El Cloro (Cl, [Ne] 3s² 3p⁵) posee alta afinidad electrónica y lo captura, adquiriendo ambos la configuración de gas noble ([Ne] y [Ar]).
+                            </p>
+                            <p>
+                                La atracción electrostática multidireccional entre cationes Na⁺ y aniones Cl⁻ impide moléculas aisladas, generando una <strong>red cristalina cúbica tridimensional</strong> de altísimo punto de fusión (801 °C).
+                            </p>
+                        </div>
+
+                        <!-- Conexión Fisiológica y Kinesiológica -->
+                        <div class="p-3.5 bg-emerald-50 rounded-xl border border-emerald-200 text-xs text-emerald-900 space-y-1">
+                            <strong class="block text-emerald-800 font-bold flex items-center gap-1.5">
+                                <i class="ph-bold ph-waves"></i> Relevancia en el Líquido Sinovial Articular:
+                            </strong>
+                            <p class="leading-relaxed text-[11px] text-emerald-800">
+                                En el organismo, el enlace iónico del NaCl se disocia instantáneamente en agua debido a la alta constante dieléctrica de los dipolos acuosos. Los iones libres Na⁺ y Cl⁻ mantienen la presión osmótica fisiológica y la lubricación del cartílago hialino en articulaciones diartrodiales.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================================== -->
+            <!-- MÓDULO 3: ESTACIÓN DE ENLACE COVALENTE (SIMPLE, DOBLE, TRIPLE)  -->
+            <!-- ============================================================== -->
+            <section id="tab-covalente" class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 space-y-6 hidden">
+                <div class="border-b border-gray-100 pb-4">
+                    <span class="text-xs font-bold text-accent tracking-wider uppercase">MÓDULO 3</span>
+                    <h2 class="text-xl font-bold text-gray-800">Estación de Enlace Covalente: Compartición y Multiplicidad</h2>
+                    <p class="text-xs text-gray-500 mt-1">
+                        Unión entre elementos no metálicos mediante compartición de pares de electrones: enlace simple (H₂O), enlace doble (O₂) y enlace triple (N₂).
+                    </p>
+                </div>
+
+                <!-- Selector de Molécula Covalente -->
+                <div class="flex flex-wrap items-center justify-between gap-2 bg-gray-50 p-3 rounded-2xl border border-gray-200 text-xs">
+                    <span class="font-bold text-gray-700 flex items-center gap-1.5">
+                        <i class="ph-bold ph-share-network text-accent"></i> Geometría Molecular:
+                    </span>
+                    <div class="flex flex-wrap gap-1.5">
+                        <button onclick="selectCovalentType('H2O')" id="btn-cov-H2O" class="px-3 py-1.5 rounded-lg font-bold bg-accent text-white shadow-xs transition">
+                            Agua (H₂O · Enlaces Simples)
+                        </button>
+                        <button onclick="selectCovalentType('O2')" id="btn-cov-O2" class="px-3 py-1.5 rounded-lg font-bold bg-white text-gray-700 border border-gray-200 hover:bg-gray-100 transition">
+                            Oxígeno (O₂ · Enlace Doble)
+                        </button>
+                        <button onclick="selectCovalentType('N2')" id="btn-cov-N2" class="px-3 py-1.5 rounded-lg font-bold bg-white text-gray-700 border border-gray-200 hover:bg-gray-100 transition">
+                            Nitrógeno (N₂ · Enlace Triple)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Canvas de Solapamiento Orbital Molecular -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                    <div class="lg:col-span-7 flex flex-col items-center">
+                        <div class="w-full relative rounded-2xl border border-gray-200 overflow-hidden shadow-inner canvas-bg p-2">
+                            <canvas id="canvas-covalente" width="520" height="260" class="w-full h-auto block"></canvas>
+                        </div>
+                        <span class="text-[11px] text-gray-400 mt-2 text-center">
+                            Solapamiento de densidades electrónicas: pares compartidos entre núcleos y pares solitarios no enlazantes.
+                        </span>
+                    </div>
+
+                    <div class="lg:col-span-5 space-y-3">
+                        <div id="covalent-detail-box" class="p-4 bg-gray-50 rounded-xl border border-gray-200 text-xs text-gray-700 space-y-2 leading-relaxed">
+                            <strong class="text-accent block text-sm" id="covalent-title">Molécula de Agua (H₂O · Enlaces Covalentes Simples):</strong>
+                            <p id="covalent-desc">
+                                El átomo de oxígeno central comparte un par de electrones con cada hidrógeno formando dos enlaces simples sigma (σ). Además, conserva 2 pares solitarios no enlazantes que empujan los enlaces generando una geometría angular característica de 104.5°.
+                            </p>
+                        </div>
+
+                        <!-- Propiedades de Longitud y Fuerza de Enlace -->
+                        <div class="grid grid-cols-2 gap-2 text-xs text-center">
+                            <div class="p-2.5 bg-white rounded-xl border border-gray-200">
+                                <span class="text-[10px] text-gray-400 uppercase font-bold block">Longitud de Enlace</span>
+                                <span id="cov-length" class="font-bold text-accent text-sm">96 pm (Simple)</span>
+                            </div>
+                            <div class="p-2.5 bg-white rounded-xl border border-gray-200">
+                                <span class="text-[10px] text-gray-400 uppercase font-bold block">Energía de Disociación</span>
+                                <span id="cov-energy" class="font-bold text-gray-800 text-sm">463 kJ/mol</span>
+                            </div>
+                        </div>
+
+                        <!-- Aplicación en el Colágeno Tendinoso -->
+                        <div class="p-3 bg-amber-50 rounded-xl border border-amber-200 text-xs text-amber-900">
+                            <strong class="block text-amber-800 font-bold mb-1">El Enlace Covalente en el Aparato Locomotor:</strong>
+                            <p class="leading-relaxed">
+                                Los enlaces covalentes peptídicos (-CO-NH-) forman la cadena primaria del tropocolágeno en tendones, ligamentos y fascias. Su gran estabilidad covalente es la responsable de la resistencia a la tracción tensil ante cargas mecánicas deportivas.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================================== -->
+            <!-- MÓDULO 4: EL MODELO DEL "MAR DE ELECTRONES" (ENLACE METÁLICO) -->
+            <!-- ============================================================== -->
+            <section id="tab-metalico" class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 space-y-6 hidden">
+                <div class="border-b border-gray-100 pb-4">
+                    <span class="text-xs font-bold text-accent tracking-wider uppercase">MÓDULO 4</span>
+                    <h2 class="text-xl font-bold text-gray-800">El Modelo del Mar de Electrones (Enlace Metálico)</h2>
+                    <p class="text-xs text-gray-500 mt-1">
+                        Cationes metálicos inmersos en una nube de electrones de valencia deslocalizados móviles que justifican la conductividad eléctrica, térmica, maleabilidad y ductilidad.
+                    </p>
+                </div>
+
+                <!-- Controles Físicos del Metal -->
+                <div class="flex flex-wrap items-center justify-between gap-2 bg-gray-50 p-3 rounded-2xl border border-gray-200 text-xs">
+                    <span class="font-bold text-gray-700 flex items-center gap-1.5">
+                        <i class="ph-bold ph-wrench text-accent"></i> Estímulo Fisicoquímico sobre la Red Metálica:
+                    </span>
+                    <div class="flex flex-wrap gap-1.5">
+                        <button onclick="setMetallicStress('reposo')" id="btn-met-reposo" class="px-3 py-1.5 rounded-lg font-bold bg-accent text-white shadow-xs transition">
+                            Reposo Térmico
+                        </button>
+                        <button onclick="setMetallicStress('voltaje')" id="btn-met-voltaje" class="px-3 py-1.5 rounded-lg font-bold bg-white text-gray-700 border border-gray-200 hover:bg-gray-100 transition">
+                            Aplicar Campo Eléctrico (Voltaje)
+                        </button>
+                        <button onclick="setMetallicStress('calor')" id="btn-met-calor" class="px-3 py-1.5 rounded-lg font-bold bg-white text-gray-700 border border-gray-200 hover:bg-gray-100 transition">
+                            Aplicar Calor (Conductividad Térmica)
+                        </button>
+                        <button onclick="setMetallicStress('deformacion')" id="btn-met-deformacion" class="px-3 py-1.5 rounded-lg font-bold bg-white text-gray-700 border border-gray-200 hover:bg-gray-100 transition">
+                            Esfuerzo Mecánico (Maleabilidad)
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Canvas del Mar de Electrones -->
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 items-center">
+                    <div class="lg:col-span-7 flex flex-col items-center">
+                        <div class="w-full relative rounded-2xl border border-gray-200 overflow-hidden shadow-inner canvas-bg p-2">
+                            <canvas id="canvas-metalico" width="520" height="260" class="w-full h-auto block"></canvas>
+                        </div>
+                        <span class="text-[11px] text-gray-400 mt-2 text-center">
+                            Cationes fijos (esferas grises) y gas de electrones libres (puntos amarillos/azules) desplazándose sin que se fracturen los planos atómicos.
+                        </span>
+                    </div>
+
+                    <div class="lg:col-span-5 space-y-3">
+                        <div id="metallic-detail-box" class="p-4 bg-gray-50 rounded-xl border border-gray-200 text-xs text-gray-700 space-y-2 leading-relaxed">
+                            <strong class="text-accent block text-sm" id="met-title">Modelo del Mar de Electrones en Reposo:</strong>
+                            <p id="met-desc">
+                                Los átomos metálicos se desprenden de sus electrones de valencia formando una red ordenada de cationes rodeada por un "mar" de electrones libres deslocalizados. Debido a que el enlace no es rígido ni direccional, los planos atómicos pueden deslizarse ante golpes sin repulsión electrostática ni fractura (maleabilidad y ductilidad).
+                            </p>
+                        </div>
+
+                        <!-- Conexión Biomateriales Ortopédicos -->
+                        <div class="p-3.5 bg-blue-50 rounded-xl border border-blue-200 text-xs text-blue-950 space-y-1">
+                            <strong class="block text-blue-800 font-bold flex items-center gap-1.5">
+                                <i class="ph-bold ph-bone"></i> Biomateriales en Cirugía Ortopédica:
+                            </strong>
+                            <p class="leading-relaxed text-[11px] text-blue-900">
+                                Las prótesis totales de cadera y rodilla utilizan aleaciones de titanio (Ti-6Al-4V) y cromo-cobalto. El enlace metálico les otorga elevada resistencia a la fatiga mecánica por ciclo de marcha y ductilidad para absorber impactos sin fracturarse.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- ============================================================== -->
+            <!-- MÓDULO 5: BIOENLACES Y BIOMATERIALES EN KINESIOLOGÍA            -->
+            <!-- ============================================================== -->
+            <section id="tab-casos" class="bg-white rounded-2xl p-6 shadow-sm border border-gray-100 space-y-6 hidden">
+                <div class="border-b border-gray-100 pb-4">
+                    <span class="text-xs font-bold text-accent tracking-wider uppercase">MÓDULO 5</span>
+                    <h2 class="text-xl font-bold text-gray-800">Casos Clínicos: Bioenlaces y Biomateriales Kinesiológicos</h2>
+                    <p class="text-xs text-gray-500 mt-1">
+                        Resolución de dilemas clínicos reales aplicando la fisicoquímica de los enlaces químicos en tejidos biológicos, fisioterapia y rehabilitación articular.
+                    </p>
+                </div>
+
+                <div class="space-y-4 text-xs">
+                    <!-- Caso 1 -->
+                    <div class="p-5 bg-gray-50 rounded-2xl border border-gray-200 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-accent text-sm">Caso 1: Resistencia a la Tracción en Tendinopatías del Aquiles</span>
+                            <span class="text-[10px] font-bold px-2 py-0.5 bg-accent-light text-accent rounded-full border border-accent/20">Enlace Covalente Peptídico</span>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">
+                            Un maratonista presenta dolor en el tendón de Aquiles tras entrenar en cuestas. En el protocolo de carga excéntrica, el kinesiólogo busca estimular la síntesis de colágeno tipo I para restaurar la resistencia tensil del tendón:
+                        </p>
+                        <strong class="block text-gray-800">¿Qué tipo de enlace químico primario garantiza la unión indestructible entre los aminoácidos de la triple hélice de colágeno?</strong>
+                        <div class="space-y-2 pt-1">
+                            <button onclick="checkCaseU403(1, 'A')" class="w-full p-2.5 rounded-xl border border-gray-200 bg-white hover:border-accent text-left transition">
+                                A) El enlace covalente peptídico (-CO-NH-), caracterizado por la compartición equitativa y fuerte de pares electrónicos entre carbono y nitrógeno.
+                            </button>
+                            <button onclick="checkCaseU403(1, 'B')" class="w-full p-2.5 rounded-xl border border-gray-200 bg-white hover:border-accent text-left transition">
+                                B) El enlace iónico débil que se disuelve instantáneamente con el ácido láctico del esfuerzo.
+                            </button>
+                        </div>
+                        <div id="feedback-u403-1" class="hidden mt-2 p-3 rounded-xl text-xs leading-relaxed"></div>
+                    </div>
+
+                    <!-- Caso 2 -->
+                    <div class="p-5 bg-gray-50 rounded-2xl border border-gray-200 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-accent text-sm">Caso 2: Hidratación Articular y Presión Osmótica</span>
+                            <span class="text-[10px] font-bold px-2 py-0.5 bg-accent-light text-accent rounded-full border border-accent/20">Enlace Iónico y Solvatación</span>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">
+                            En un paciente con artrosis de rodilla, los glucosaminoglicanos de la matriz cartilaginosa atraen cationes de sodio (Na⁺) mediante atracción electrostática iónica:
+                        </p>
+                        <strong class="block text-gray-800">¿Cómo favorece esta interacción iónica la absorción de impactos durante la marcha?</strong>
+                        <div class="space-y-2 pt-1">
+                            <button onclick="checkCaseU403(2, 'A')" class="w-full p-2.5 rounded-xl border border-gray-200 bg-white hover:border-accent text-left transition">
+                                A) Los cationes Na⁺ atraen dipolos de agua por solvatación, hidratando el cartílago para conferirle comportamiento hidrodinámico viscoelástico amortiguador.
+                            </button>
+                            <button onclick="checkCaseU403(2, 'B')" class="w-full p-2.5 rounded-xl border border-gray-200 bg-white hover:border-accent text-left transition">
+                                B) El enlace iónico cristaliza el cartílago volviéndolo una roca rígida no deformable.
+                            </button>
+                        </div>
+                        <div id="feedback-u403-2" class="hidden mt-2 p-3 rounded-xl text-xs leading-relaxed"></div>
+                    </div>
+
+                    <!-- Caso 3 -->
+                    <div class="p-5 bg-gray-50 rounded-2xl border border-gray-200 space-y-3">
+                        <div class="flex items-center justify-between">
+                            <span class="font-bold text-accent text-sm">Caso 3: Osteosíntesis y Biocompatibilidad Metálica</span>
+                            <span class="text-[10px] font-bold px-2 py-0.5 bg-accent-light text-accent rounded-full border border-accent/20">Enlace Metálico</span>
+                        </div>
+                        <p class="text-gray-700 leading-relaxed">
+                            Tras una fractura de fémur, se coloca una placa de titanio con tornillos para osteosíntesis rígida. Durante la rehabilitación kinésica precoz con apoyo progresivo:
+                        </p>
+                        <strong class="block text-gray-800">¿Por qué el enlace metálico del titanio es idóneo para soportar los ciclos de carga sin romperse?</strong>
+                        <div class="space-y-2 pt-1">
+                            <button onclick="checkCaseU403(3, 'A')" class="w-full p-2.5 rounded-xl border border-gray-200 bg-white hover:border-accent text-left transition">
+                                A) Porque la deslocalización del mar de electrones permite que los planos de cationes se deslicen levemente ante microdeformaciones sin quebrarse de forma frágil.
+                            </button>
+                            <button onclick="checkCaseU403(3, 'B')" class="w-full p-2.5 rounded-xl border border-gray-200 bg-white hover:border-accent text-left transition">
+                                B) Porque el titanio forma enlaces covalentes dobles con el periostio óseo que impiden cualquier movimiento celular.
+                            </button>
+                        </div>
+                        <div id="feedback-u403-3" class="hidden mt-2 p-3 rounded-xl text-xs leading-relaxed"></div>
+                    </div>
+                </div>
+            </section>
+
+        </div>
+    </main>
+
+    <!-- Modal: Guía de Uso del Simulador -->
+    <div id="modal-tutorial" class="fixed inset-0 bg-black/60 backdrop-blur-sm z-50 flex items-center justify-center hidden p-4">
+        <div class="bg-white max-w-3xl w-full rounded-2xl shadow-xl overflow-hidden flex flex-col max-h-[90vh]">
+            <div class="bg-accent p-4 text-white flex items-center justify-between">
+                <div class="flex items-center gap-2">
+                    <i class="ph-bold ph-graduation-cap text-xl"></i>
+                    <h3 class="font-bold text-base">Guía de Uso del Simulador y Orientación Pedagógica</h3>
+                </div>
+                <button onclick="closeTutorial()" class="text-white hover:text-gray-200 transition">
+                    <i class="ph-bold ph-x text-lg"></i>
+                </button>
+            </div>
+            
+            <div class="p-6 overflow-y-auto space-y-5 text-xs md:text-sm text-gray-600 custom-scroll leading-relaxed">
+                <div>
+                    <h4 class="font-bold text-gray-800 text-sm mb-1 text-accent flex items-center gap-2">
+                        <i class="ph-bold ph-target"></i> 1. Propósito Tecnopedagógico
+                    </h4>
+                    <p>
+                        Este simulador interactivo está desarrollado especialmente para estudiantes ingresantes a la <strong>Licenciatura en Kinesiología y Fisiatría (Facultad de Ciencias Médicas - Universidad Católica de Cuyo)</strong>. Su meta es integrar la comprensión de los <strong>símbolos de Lewis</strong>, la <strong>regla del octeto y sus excepciones</strong>, la <strong>transferencia iónica</strong>, la <strong>compartición covalente</strong> y el <strong>mar de electrones metálico</strong> con los biomateriales de osteosíntesis, la viscoelasticidad del colágeno y la fisiología articular.
+                    </p>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-800 text-sm mb-2 text-accent flex items-center gap-2">
+                        <i class="ph-bold ph-compass"></i> 2. Guía Detallada de Módulos, Controles y Visualizaciones
+                    </h4>
+                    
+                    <div class="space-y-3">
+                        <div class="bg-gray-50 p-3.5 rounded-xl border border-gray-200">
+                            <span class="font-bold text-gray-800 text-xs text-accent flex items-center gap-1.5">
+                                <i class="ph-bold ph-dots-nine"></i> Módulo 1: Símbolos de Lewis y Regla del Octeto (con Excepciones Reales)
+                            </span>
+                            <p class="text-xs text-gray-600 mt-1 leading-relaxed">
+                                • <strong>Selector interactivo:</strong> Alterná entre átomos representativos estables (Carbono, Nitrógeno, Oxígeno, Neón) y estructuras complejas con excepciones a la regla del octeto.<br>
+                                • <strong>Canvas molecular con geometría real:</strong> Visualizá el <em>octeto deficiente</em> en el Trifluoruro de Boro (BF₃, geometría plana trigonal a 120°, 6 electrones centrales) y el <em>octeto expandido hipervalente</em> en el Hexafluoruro de Azufre (SF₆, geometría octaédrica a 90°, 12 electrones centrales con efecto de profundidad 3D).<br>
+                                • <strong>Cuestionario formativo inmediato:</strong> Autoevaluación interactiva sobre electrones de valencia y estabilidad sin penalizaciones.
+                            </p>
+                        </div>
+
+                        <div class="bg-gray-50 p-3.5 rounded-xl border border-gray-200">
+                            <span class="font-bold text-gray-800 text-xs text-accent flex items-center gap-1.5">
+                                <i class="ph-bold ph-lightning"></i> Módulo 2: Laboratorio de Enlace Iónico y Red Cristalina 3D
+                            </span>
+                            <p class="text-xs text-gray-600 mt-1 leading-relaxed">
+                                • <strong>Cinemática de transferencia electrónica:</strong> Accioná el botón de transferencia para ver la trayectoria física parabólica del electrón 3s¹ del Na hacia el Cl, con contracción de radio catiónico (Na → Na⁺) y expansión de radio aniónico (Cl → Cl⁻) simultáneas.<br>
+                                • <strong>Visualizador de Red Cristalina Cúbica 3D:</strong> Conmutá la vista para examinar en proyección isométrica con rotación continua la celda unitaria de cloruro de sodio (NaCl), con aristas cristalinas y esferas diferenciadas.<br>
+                                • <strong>Fundamento articular:</strong> Explicación de la disociación electrolítica y presión osmótica en el líquido sinovial articular.
+                            </p>
+                        </div>
+
+                        <div class="bg-gray-50 p-3.5 rounded-xl border border-gray-200">
+                            <span class="font-bold text-gray-800 text-xs text-accent flex items-center gap-1.5">
+                                <i class="ph-bold ph-share-network"></i> Módulo 3: Estación de Enlace Covalente y Solapamiento Orbital
+                            </span>
+                            <p class="text-xs text-gray-600 mt-1 leading-relaxed">
+                                • <strong>Multiplicidad de enlaces:</strong> Compará enlace simple (H₂O, ángulo experimental de 104.5°, dipolo molecular e indicación de pares solitarios), enlace doble (O₂, solapamiento orbital σ + π) y enlace triple (N₂, alta densidad electrónica y máxima energía de enlace).<br>
+                                • <strong>Métrica interactiva:</strong> Fórmulas estructurales, pares compartidos vs. no enlazantes y su relación biomecánica con la rigidez tensil del colágeno.
+                            </p>
+                        </div>
+
+                        <div class="bg-gray-50 p-3.5 rounded-xl border border-gray-200">
+                            <span class="font-bold text-gray-800 text-xs text-accent flex items-center gap-1.5">
+                                <i class="ph-bold ph-wrench"></i> Módulo 4: El Modelo del Mar de Electrones y Propiedades Físicas
+                            </span>
+                            <p class="text-xs text-gray-600 mt-1 leading-relaxed">
+                                • <strong>Física de partículas en tiempo real:</strong> Simulación de 50 electrones deslocalizados navegando entre cationes fijos.<br>
+                                • <strong>Pruebas de estrés y aplicaciones kinésicas:</strong> Evaluá el estado de <em>Reposo</em>, aplicá <em>Voltaje Eléctrico</em> (flujo direccional continuo vinculado a electroterapia TENS), <em>Calor Térmico</em> (agitación browniana acelerada vinculada a termoterapia por onda corta) y <em>Esfuerzo Mecánico Cortante</em> (demostración de maleabilidad y ductilidad de prótesis ortopédicas de titanio sin fractura).
+                            </p>
+                        </div>
+
+                        <div class="bg-gray-50 p-3.5 rounded-xl border border-gray-200">
+                            <span class="font-bold text-gray-800 text-xs text-accent flex items-center gap-1.5">
+                                <i class="ph-bold ph-first-aid"></i> Módulo 5: Casos Clínicos de Bioenlaces y Biomateriales Kinesiológicos
+                            </span>
+                            <p class="text-xs text-gray-600 mt-1 leading-relaxed">
+                                • <strong>Resolución de dilemas clínicos reales:</strong> Caso 1 (Resistencia a la tracción en tendón de Aquiles y enlace covalente peptídico), Caso 2 (Hidratación articular y presión osmótica por solvatación iónica de Na⁺) y Caso 3 (Osteosíntesis femoral con placas de titanio dúctiles).<br>
+                                • <strong>Retroalimentación formativa inmediata:</strong> Diagnóstico justificado conceptualmente por el tutor virtual en cada respuesta.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <div>
+                    <h4 class="font-bold text-gray-800 text-sm mb-1 text-accent flex items-center gap-2">
+                        <i class="ph-bold ph-check-circle"></i> 3. Metodología de Exploración Formativa
+                    </h4>
+                    <p>
+                        El entorno promueve el razonamiento reflexivo universitario: sin penalizaciones numéricas, bloqueos ni temporizadores restrictivos. Cada animación en Canvas se ejecuta en tiempo real y puede reiniciarse o conmutarse libremente para consolidar los modelos microscópicos antes del cursado formal de la carrera.
+                    </p>
+                </div>
+            </div>
+            
+            <div class="bg-gray-50 px-6 py-3 border-t border-gray-200 flex justify-end">
+                <button onclick="closeTutorial()" class="px-4 py-2 bg-accent hover:bg-accent-dark text-white rounded-xl text-xs font-semibold transition shadow-sm">
+                    Entendido, comenzar exploración
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer Institucional -->
+    <footer class="bg-white border-t border-gray-200 py-4 text-center text-xs text-gray-500 mt-12">
+        <p>Desarrollado por vesalio - Todos los derechos reservados</p>
+    </footer>
+
+    <!-- Script del Simulador -->
+    <script>
+        // Variables de Estado
+        let currentTab = 'tab-lewis';
+        let currentLewis = 'Ne';
+        let ionicTransferProgress = 0; // 0 a 1
+        let isIonicTransferring = false;
+        let showCrystalGrid = false;
+        let crystalAngle = 0;
+        let currentCovalent = 'H2O';
+        let metallicStressMode = 'reposo'; // reposo, voltaje, calor, deformacion
+        let animClock = 0;
+
+        // Partículas del mar de electrones metálico con masa y velocidad
+        const metallicElectrons = [];
+        for (let i = 0; i < 50; i++) {
+            metallicElectrons.push({
+                x: 45 + Math.random() * 430,
+                y: 40 + Math.random() * 160,
+                vx: (Math.random() - 0.5) * 1.5,
+                vy: (Math.random() - 0.5) * 1.5,
+                phase: Math.random() * Math.PI * 2
+            });
+        }
+
+        // Bucle de Animación a 60 FPS
+        function animationLoop() {
+            animClock += 0.035;
+            crystalAngle += 0.015;
+
+            if (currentTab === 'tab-lewis') {
+                drawLewisCanvas();
+            } else if (currentTab === 'tab-ionico') {
+                if (isIonicTransferring) {
+                    ionicTransferProgress += 0.02;
+                    if (ionicTransferProgress >= 1) {
+                        ionicTransferProgress = 1;
+                        isIonicTransferring = false;
+                    }
+                }
+                drawIonicCanvas();
+            } else if (currentTab === 'tab-covalente') {
+                drawCovalentCanvas();
+            } else if (currentTab === 'tab-metalico') {
+                updateMetallicPhysics();
+                drawMetallicCanvas();
+            }
+
+            requestAnimationFrame(animationLoop);
+        }
+
+        // =================================================================
+        // NAVEGACIÓN ENTRE MÓDULOS
+        // =================================================================
+        function switchTab(tabId) {
+            currentTab = tabId;
+            const tabIds = ['tab-lewis', 'tab-ionico', 'tab-covalente', 'tab-metalico', 'tab-casos'];
+
+            tabIds.forEach(id => {
+                const el = document.getElementById(id);
+                const btn = document.getElementById('btn-' + id);
+                if (!el) return;
+
+                if (id === tabId) {
+                    el.classList.remove('hidden');
+                    if (btn) {
+                        btn.className = 'bg-accent text-white flex-1 lg:flex-none text-left py-2.5 px-4 rounded-xl text-sm font-semibold transition shadow-sm';
+                    }
+                } else {
+                    el.classList.add('hidden');
+                    if (btn) {
+                        btn.className = 'text-gray-700 hover:bg-gray-100 flex-1 lg:flex-none text-left py-2.5 px-4 rounded-xl text-sm font-medium transition';
+                    }
+                }
+            });
+
+            setTimeout(() => {
+                if (tabId === 'tab-lewis') drawLewisCanvas();
+                if (tabId === 'tab-ionico') drawIonicCanvas();
+                if (tabId === 'tab-covalente') drawCovalentCanvas();
+                if (tabId === 'tab-metalico') drawMetallicCanvas();
+            }, 40);
+        }
+
+        function openTutorial() {
+            document.getElementById('modal-tutorial').classList.remove('hidden');
+        }
+
+        function closeTutorial() {
+            document.getElementById('modal-tutorial').classList.add('hidden');
+        }
+
+        // =================================================================
+        // MÓDULO 1: SÍMBOLOS DE LEWIS Y OCTETO
+        // =================================================================
+        function selectLewisStructure(type) {
+            currentLewis = type;
+            ['C', 'N', 'O', 'Ne', 'BF3', 'SF6'].forEach(t => {
+                const btn = document.getElementById('btn-lew-' + t);
+                if (!btn) return;
+                if (t === type) {
+                    btn.className = 'px-3 py-1.5 rounded-lg font-bold bg-accent text-white shadow-xs transition';
+                } else {
+                    btn.className = 'px-3 py-1.5 rounded-lg font-bold bg-white text-gray-700 border border-gray-200 hover:bg-gray-100 transition';
+                }
+            });
+
+            const title = document.getElementById('lewis-title');
+            const desc = document.getElementById('lewis-desc');
+
+            if (type === 'C') {
+                title.textContent = 'Carbono (C, Z=6 · 4 Electrones de Valencia):';
+                desc.textContent = 'Configuración: 1s² 2s² 2p². Posee 4 electrones en su capa más externa. Hibrida sus orbitales formando 4 enlaces tetraédricos de 109.5°, base de las cadenas de aminoácidos del colágeno tendinoso.';
+            } else if (type === 'N') {
+                title.textContent = 'Nitrógeno (N, Z=7 · 5 Electrones de Valencia):';
+                desc.textContent = 'Configuración: 1s² 2s² 2p³. Posee 1 par de electrones no enlazante y 3 electrones desapareados, permitiendo la formación de enlaces triples (N₂) o enlaces peptídicos amida (-CO-NH-).';
+            } else if (type === 'O') {
+                title.textContent = 'Oxígeno (O, Z=8 · 6 Electrones de Valencia):';
+                desc.textContent = 'Configuración: 1s² 2s² 2p⁴. Presenta 2 pares solitarios y 2 electrones desapareados, alcanzando el octeto completo en el agua (H₂O) y en los grupos carbonilo.';
+            } else if (type === 'Ne') {
+                title.textContent = 'Neón (Ne, Z=10 · Octeto Completo y Máxima Estabilidad):';
+                desc.textContent = 'Configuración: 1s² 2s² 2p⁶. Posee 8 electrones de valencia agrupados en 4 pares estables. Es la configuración de mínima energía que los demás elementos imitan al unirse.';
+            } else if (type === 'BF3') {
+                title.textContent = 'Trifluoruro de Boro (BF₃ · Octeto Deficiente):';
+                desc.textContent = 'Excepción clásica: el átomo central de boro (grupo 13) se estabiliza con solo 6 electrones compartidos (3 pares). Geometría plana trigonal de 120° con orbital 2p vacío susceptible a ataques nucleofílicos.';
+            } else {
+                title.textContent = 'Hexafluoruro de Azufre (SF₆ · Octeto Expandido / Hipervalencia):';
+                desc.textContent = 'Excepción por hipervalencia: el azufre aloja 12 electrones de valencia en 6 enlaces con orbitales híbridos sp³d². Geometría octaédrica perfecta de 90° de gran inercia química.';
+            }
+
+            drawLewisCanvas();
+        }
+
+        function drawLewisCanvas() {
+            const canvas = document.getElementById('canvas-lewis');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width;
+            const h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#f8fafc';
+            ctx.fillRect(0, 0, w, h);
+
+            const cx = w / 2;
+            const cy = h / 2 - 10;
+
+            if (currentLewis === 'C' || currentLewis === 'N' || currentLewis === 'O' || currentLewis === 'Ne') {
+                // Núcleo atómico sombreado en 3D
+                const gradNuc = ctx.createRadialGradient(cx - 5, cy - 5, 2, cx, cy, 28);
+                gradNuc.addColorStop(0, '#ffffff');
+                gradNuc.addColorStop(0.3, '#334155');
+                gradNuc.addColorStop(1, '#0f172a');
+                ctx.fillStyle = gradNuc;
+                ctx.beginPath();
+                ctx.arc(cx, cy, 28, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 24px Outfit, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText(currentLewis, cx, cy + 8);
+
+                // Capa de valencia concéntrica difusa
+                ctx.strokeStyle = 'rgba(67, 102, 0, 0.4)';
+                ctx.lineWidth = 1.5;
+                ctx.setLineDash([4, 4]);
+                ctx.beginPath();
+                ctx.arc(cx, cy, 60, 0, Math.PI * 2);
+                ctx.stroke();
+                ctx.setLineDash([]);
+
+                // Función auxiliar para dibujar electrones con halo
+                const drawGlowingElectron = (x, y) => {
+                    ctx.shadowColor = '#436600';
+                    ctx.shadowBlur = 8;
+                    ctx.fillStyle = '#436600';
+                    ctx.beginPath();
+                    ctx.arc(x, y, 5, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.fillStyle = '#ffffff';
+                    ctx.beginPath();
+                    ctx.arc(x - 1.5, y - 1.5, 1.5, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.shadowBlur = 0;
+                };
+
+                const dist = 60;
+                const pairGap = 10;
+
+                if (currentLewis === 'C') {
+                    drawGlowingElectron(cx, cy - dist);
+                    drawGlowingElectron(cx + dist, cy);
+                    drawGlowingElectron(cx, cy + dist);
+                    drawGlowingElectron(cx - dist, cy);
+                } else if (currentLewis === 'N') {
+                    // Par arriba, 3 simples
+                    drawGlowingElectron(cx - pairGap, cy - dist);
+                    drawGlowingElectron(cx + pairGap, cy - dist);
+                    drawGlowingElectron(cx + dist, cy);
+                    drawGlowingElectron(cx, cy + dist);
+                    drawGlowingElectron(cx - dist, cy);
+                } else if (currentLewis === 'O') {
+                    // 2 pares (arriba y abajo), 2 simples
+                    drawGlowingElectron(cx - pairGap, cy - dist);
+                    drawGlowingElectron(cx + pairGap, cy - dist);
+                    drawGlowingElectron(cx - pairGap, cy + dist);
+                    drawGlowingElectron(cx + pairGap, cy + dist);
+                    drawGlowingElectron(cx + dist, cy);
+                    drawGlowingElectron(cx - dist, cy);
+                } else {
+                    // Neón: 4 pares completos
+                    drawGlowingElectron(cx - pairGap, cy - dist);
+                    drawGlowingElectron(cx + pairGap, cy - dist);
+                    drawGlowingElectron(cx - pairGap, cy + dist);
+                    drawGlowingElectron(cx + pairGap, cy + dist);
+                    drawGlowingElectron(cx + dist, cy - pairGap);
+                    drawGlowingElectron(cx + dist, cy + pairGap);
+                    drawGlowingElectron(cx - dist, cy - pairGap);
+                    drawGlowingElectron(cx - dist, cy + pairGap);
+                }
+
+                ctx.fillStyle = '#64748b';
+                ctx.font = '11px Outfit, sans-serif';
+                ctx.fillText('Modelo de Lewis: 4 cuadrantes de valencia con pares solitarios y electrones libres', cx, h - 14);
+
+            } else if (currentLewis === 'BF3') {
+                // BF3 Tridimensional Plana Trigonal con arcos de 120°
+                ctx.fillStyle = '#b45309';
+                ctx.beginPath();
+                ctx.arc(cx, cy, 22, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 18px Outfit, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('B', cx, cy + 6);
+
+                const angles = [-Math.PI / 2, Math.PI / 6, (5 * Math.PI) / 6];
+                const bLen = 80;
+
+                angles.forEach((ang, idx) => {
+                    const fx = cx + bLen * Math.cos(ang);
+                    const fy = cy + bLen * Math.sin(ang);
+
+                    // Enlace covalente
+                    ctx.strokeStyle = '#436600';
+                    ctx.lineWidth = 3.5;
+                    ctx.beginPath();
+                    ctx.moveTo(cx + 18 * Math.cos(ang), cy + 18 * Math.sin(ang));
+                    ctx.lineTo(fx - 16 * Math.cos(ang), fy - 16 * Math.sin(ang));
+                    ctx.stroke();
+
+                    // Átomo de Flúor
+                    ctx.fillStyle = '#0284c7';
+                    ctx.beginPath();
+                    ctx.arc(fx, fy, 16, 0, Math.PI * 2);
+                    ctx.fill();
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = 'bold 13px Outfit, sans-serif';
+                    ctx.fillText('F', fx, fy + 4.5);
+                });
+
+                // Arco angular de 120°
+                ctx.strokeStyle = '#d97706';
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                ctx.arc(cx, cy, 38, -Math.PI / 2, Math.PI / 6);
+                ctx.stroke();
+
+                ctx.fillStyle = '#b45309';
+                ctx.font = 'bold 11px Outfit, sans-serif';
+                ctx.fillText('120°', cx + 28, cy - 22);
+                ctx.fillText('Octeto Deficiente: Boro estable con solo 6 electrones periféricos (3 enlaces σ)', cx, h - 14);
+
+            } else {
+                // SF6 Hipervalente Octaédrico (12 electrones)
+                ctx.fillStyle = '#9333ea';
+                ctx.beginPath();
+                ctx.arc(cx, cy, 24, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 18px Outfit, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('S', cx, cy + 6);
+
+                const fPositions = [
+                    { x: cx, y: cy - 75, label: 'F (axial)' },
+                    { x: cx, y: cy + 75, label: 'F (axial)' },
+                    { x: cx - 90, y: cy - 15, label: 'F (ecuat)' },
+                    { x: cx + 90, y: cy + 15, label: 'F (ecuat)' },
+                    { x: cx - 55, y: cy + 45, label: 'F (ant)' },
+                    { x: cx + 55, y: cy - 45, label: 'F (post)' }
+                ];
+
+                fPositions.forEach(f => {
+                    ctx.strokeStyle = '#9333ea';
+                    ctx.lineWidth = 2.5;
+                    ctx.beginPath();
+                    ctx.moveTo(cx, cy);
+                    ctx.lineTo(f.x, f.y);
+                    ctx.stroke();
+
+                    ctx.fillStyle = '#0284c7';
+                    ctx.beginPath();
+                    ctx.arc(f.x, f.y, 14, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = 'bold 11px Outfit, sans-serif';
+                    ctx.fillText('F', f.x, f.y + 4);
+                });
+
+                ctx.fillStyle = '#9333ea';
+                ctx.font = 'bold 11px Outfit, sans-serif';
+                ctx.fillText('Octeto Expandido: Azufre hipervalente con 12 electrones en orbitales sp³d² (90°)', cx, h - 14);
+            }
+        }
+
+        function checkLewisQuestion(ans) {
+            const fb = document.getElementById('feedback-lewis');
+            fb.classList.remove('hidden');
+            if (ans === 6) {
+                fb.className = 'mt-2 p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-lg';
+                fb.innerHTML = '<strong>¡Correcto!</strong> El boro (grupo 13) tiene 3 electrones de valencia y comparte 3 pares con los flúores, quedando estable con <strong>6 electrones</strong> en su capa de valencia (octeto deficiente).';
+            } else {
+                fb.className = 'mt-2 p-3 bg-red-50 border border-red-200 text-red-800 rounded-lg';
+                fb.innerHTML = '<strong>Incorrecto:</strong> El boro no alcanza 8 electrones en el BF₃; es una excepción hipovalente con 6 electrones.';
+            }
+        }
+
+        // =================================================================
+        // MÓDULO 2: LABORATORIO DE ENLACE IÓNICO
+        // =================================================================
+        function triggerIonicTransfer() {
+            isIonicTransferring = true;
+            ionicTransferProgress = 0;
+            showCrystalGrid = false;
+            document.getElementById('lbl-crystal-btn').textContent = 'Ver Red Cristalina de NaCl';
+        }
+
+        function toggleCrystalView() {
+            showCrystalGrid = !showCrystalGrid;
+            const lbl = document.getElementById('lbl-crystal-btn');
+            if (lbl) {
+                lbl.textContent = showCrystalGrid ? 'Ver Transferencia de Par' : 'Ver Red Cristalina de NaCl';
+            }
+            drawIonicCanvas();
+        }
+
+        function drawIonicCanvas() {
+            const canvas = document.getElementById('canvas-ionico');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width;
+            const h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#f8fafc';
+            ctx.fillRect(0, 0, w, h);
+
+            if (showCrystalGrid) {
+                // RED CRISTALINA ISOMÉTRICA DE NaCl CON ROTACIÓN SUAVE
+                ctx.fillStyle = '#334155';
+                ctx.font = 'bold 12px Outfit, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('Red Cristalina Cúbica Centrada en las Caras (FCC) de NaCl', w / 2, 24);
+
+                const originX = w / 2;
+                const originY = h / 2 - 5;
+                const spacing = 42;
+
+                // Dibujar aristas de la red cúbica
+                ctx.strokeStyle = 'rgba(148, 163, 184, 0.6)';
+                ctx.lineWidth = 1.2;
+
+                const nodes = [];
+                for (let x = -1; x <= 1; x++) {
+                    for (let y = -1; y <= 1; y++) {
+                        for (let z = -1; z <= 1; z++) {
+                            // Proyección isométrica con rotación
+                            const rotX = x * Math.cos(crystalAngle) - z * Math.sin(crystalAngle);
+                            const rotZ = x * Math.sin(crystalAngle) + z * Math.cos(crystalAngle);
+
+                            const projX = originX + rotX * spacing + y * 18;
+                            const projY = originY + rotZ * 14 - y * spacing * 0.7;
+                            const isNa = (x + y + z) % 2 === 0;
+
+                            nodes.push({ x: projX, y: projY, depth: rotZ, isNa });
+                        }
+                    }
+                }
+
+                // Ordenar por profundidad (Z-buffer simple)
+                nodes.sort((a, b) => a.depth - b.depth);
+
+                // Dibujar esferas iónicas
+                nodes.forEach(n => {
+                    const r = n.isNa ? 9 : 14;
+                    const grad = ctx.createRadialGradient(n.x - r * 0.3, n.y - r * 0.3, 2, n.x, n.y, r);
+                    if (n.isNa) {
+                        grad.addColorStop(0, '#f1f6eb');
+                        grad.addColorStop(0.4, '#436600');
+                        grad.addColorStop(1, '#1b2900');
+                    } else {
+                        grad.addColorStop(0, '#e0f2fe');
+                        grad.addColorStop(0.4, '#0284c7');
+                        grad.addColorStop(1, '#034164');
+                    }
+                    ctx.fillStyle = grad;
+                    ctx.beginPath();
+                    ctx.arc(n.x, n.y, r, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = 'bold 7px Outfit, sans-serif';
+                    ctx.fillText(n.isNa ? 'Na⁺' : 'Cl⁻', n.x, n.y + 2.5);
+                });
+
+                ctx.fillStyle = '#475569';
+                ctx.font = '10px Outfit, sans-serif';
+                ctx.fillText('Atracción electrostática de Coulomb (coordinación 6:6): Na⁺ (verde) y Cl⁻ (azul)', w / 2, h - 10);
+                return;
+            }
+
+            // MODO TRANSFERENCIA ELECTRÓNICA ACTIVA
+            const naX = 135;
+            const clX = 385;
+            const cy = h / 2 - 10;
+
+            const t = ionicTransferProgress;
+
+            // Radios dinámicos
+            const naR = 58 - t * 24; // 58 -> 34 pm relativo
+            const clR = 40 + t * 24; // 40 -> 64 pm relativo
+
+            // 1. ÁTOMO / CATIÓN NA
+            ctx.fillStyle = t > 0.8 ? '#f1f6eb' : '#f8fafc';
+            ctx.strokeStyle = '#436600';
+            ctx.lineWidth = t > 0.8 ? 3 : 2;
+            ctx.beginPath();
+            ctx.arc(naX, cy, naR, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.fillStyle = '#436600';
+            ctx.font = 'bold 20px Outfit, sans-serif';
+            ctx.textAlign = 'center';
+            ctx.fillText(t > 0.8 ? 'Na⁺' : 'Na', naX, cy + 7);
+
+            ctx.font = '10px Outfit, sans-serif';
+            ctx.fillStyle = '#64748b';
+            ctx.fillText(t > 0.8 ? '102 pm (-45%)' : '186 pm', naX, cy + naR + 18);
+
+            // 2. ÁTOMO / ANIÓN CL
+            ctx.fillStyle = t > 0.8 ? '#e0f2fe' : '#f8fafc';
+            ctx.strokeStyle = '#0284c7';
+            ctx.lineWidth = t > 0.8 ? 3 : 2;
+            ctx.beginPath();
+            ctx.arc(clX, cy, clR, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.stroke();
+
+            ctx.fillStyle = '#0284c7';
+            ctx.font = 'bold 20px Outfit, sans-serif';
+            ctx.fillText(t > 0.8 ? 'Cl⁻' : 'Cl', clX, cy + 7);
+
+            ctx.font = '10px Outfit, sans-serif';
+            ctx.fillStyle = '#64748b';
+            ctx.fillText(t > 0.8 ? '181 pm (+83%)' : '99 pm', clX, cy + clR + 18);
+
+            // 3. ELECTRÓN EN VUELO CON TRAYECTORIA PARABÓLICA
+            const ex = naX + (clX - naX) * t;
+            const ey = cy - Math.sin(t * Math.PI) * 55;
+
+            // Estela luminosa
+            ctx.strokeStyle = 'rgba(234, 179, 8, 0.4)';
+            ctx.lineWidth = 3;
+            ctx.beginPath();
+            ctx.moveTo(naX, cy);
+            ctx.quadraticCurveTo((naX + clX) / 2, cy - 80, clX, cy);
+            ctx.stroke();
+
+            // Partícula de electrón
+            ctx.fillStyle = '#eab308';
+            ctx.shadowColor = '#eab308';
+            ctx.shadowBlur = 14;
+            ctx.beginPath();
+            ctx.arc(ex, ey, 6.5, 0, Math.PI * 2);
+            ctx.fill();
+            ctx.shadowBlur = 0;
+
+            ctx.fillStyle = '#1e293b';
+            ctx.font = 'bold 10px Outfit, sans-serif';
+            ctx.fillText('e⁻ (3s¹)', ex, ey - 10);
+
+            // Mensaje de estado pedagógico
+            ctx.fillStyle = '#334155';
+            ctx.font = '11px Outfit, sans-serif';
+            if (t < 0.1) {
+                ctx.fillText('El Sodio (metal) se prepara para donar su electrón 3s¹ al Cloro (no metal).', w / 2, h - 14);
+            } else if (t < 0.95) {
+                ctx.fillText('Transferencia redox activa: ionización simultánea del catión Na⁺ y anión Cl⁻.', w / 2, h - 14);
+            } else {
+                ctx.fillStyle = '#15803d';
+                ctx.font = 'bold 11px Outfit, sans-serif';
+                ctx.fillText('¡Enlace Iónico Formado! Fuerte atracción electrostática neta por la Ley de Coulomb.', w / 2, h - 14);
+            }
+        }
+
+        // =================================================================
+        // MÓDULO 3: ESTACIÓN DE ENLACE COVALENTE
+        // =================================================================
+        function selectCovalentType(type) {
+            currentCovalent = type;
+            ['H2O', 'O2', 'N2'].forEach(t => {
+                const btn = document.getElementById('btn-cov-' + t);
+                if (!btn) return;
+                if (t === type) {
+                    btn.className = 'px-3 py-1.5 rounded-lg font-bold bg-accent text-white shadow-xs transition';
+                } else {
+                    btn.className = 'px-3 py-1.5 rounded-lg font-bold bg-white text-gray-700 border border-gray-200 hover:bg-gray-100 transition';
+                }
+            });
+
+            const title = document.getElementById('covalent-title');
+            const desc = document.getElementById('covalent-desc');
+            const length = document.getElementById('cov-length');
+            const energy = document.getElementById('cov-energy');
+
+            if (type === 'H2O') {
+                title.textContent = 'Molécula de Agua (H₂O · Enlaces Covalentes Simples):';
+                desc.textContent = 'El oxígeno central comparte dos pares de electrones con los hidrógenos (enlaces simples σ). Conserva 2 pares solitarios que repelen los enlaces hacia un ángulo de 104.5°, generando el dipolo que disuelve electrolitos corporales.';
+                length.textContent = '96 pm (Simple)';
+                energy.textContent = '463 kJ/mol';
+            } else if (type === 'O2') {
+                title.textContent = 'Oxígeno Diatómico (O₂ · Enlace Covalente Doble):';
+                desc.textContent = 'Dos átomos de oxígeno comparten 4 electrones (2 pares compartidos, 1 enlace sigma σ y 1 pi π). Mayor proximidad interatómica y mayor fuerza que el enlace simple.';
+                length.textContent = '121 pm (Doble)';
+                energy.textContent = '498 kJ/mol';
+            } else {
+                title.textContent = 'Nitrógeno Diatómico (N₂ · Enlace Covalente Triple):';
+                desc.textContent = 'Dos átomos de nitrógeno comparten 6 electrones (3 pares compartidos, 1 enlace σ y 2 enlaces π). Enlace extremadamente corto y fuerte, responsable de su inercia química en el aire.';
+                length.textContent = '110 pm (Triple)';
+                energy.textContent = '945 kJ/mol';
+            }
+
+            drawCovalentCanvas();
+        }
+
+        function drawCovalentCanvas() {
+            const canvas = document.getElementById('canvas-covalente');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width;
+            const h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#f8fafc';
+            ctx.fillRect(0, 0, w, h);
+
+            const cx = w / 2;
+            const cy = h / 2 - 12;
+
+            if (currentCovalent === 'H2O') {
+                // ÁTOMO DE OXÍGENO CENTRAL CON GRADIENTE
+                const gradO = ctx.createRadialGradient(cx - 8, cy - 18, 3, cx, cy - 10, 44);
+                gradO.addColorStop(0, '#fecaca');
+                gradO.addColorStop(0.5, '#ef4444');
+                gradO.addColorStop(1, '#991b1b');
+                ctx.fillStyle = gradO;
+                ctx.beginPath();
+                ctx.arc(cx, cy - 10, 44, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = '#ffffff';
+                ctx.font = 'bold 24px Outfit, sans-serif';
+                ctx.textAlign = 'center';
+                ctx.fillText('O (δ⁻)', cx, cy - 2);
+
+                // DOS ÁTOMOS DE HIDRÓGENO A 104.5°
+                const h1X = cx - 80;
+                const h1Y = cy + 48;
+                const h2X = cx + 80;
+                const h2Y = cy + 48;
+
+                [ { x: h1X, y: h1Y }, { x: h2X, y: h2Y } ].forEach(hAtom => {
+                    // Nube de solapamiento sigma
+                    ctx.strokeStyle = '#436600';
+                    ctx.lineWidth = 4;
+                    ctx.beginPath();
+                    ctx.moveTo(cx, cy - 10);
+                    ctx.lineTo(hAtom.x, hAtom.y);
+                    ctx.stroke();
+
+                    // Átomo H
+                    const gradH = ctx.createRadialGradient(hAtom.x - 4, hAtom.y - 4, 2, hAtom.x, hAtom.y, 22);
+                    gradH.addColorStop(0, '#f8fafc');
+                    gradH.addColorStop(0.6, '#94a3b8');
+                    gradH.addColorStop(1, '#475569');
+                    ctx.fillStyle = gradH;
+                    ctx.beginPath();
+                    ctx.arc(hAtom.x, hAtom.y, 22, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = 'bold 14px Outfit, sans-serif';
+                    ctx.fillText('H (δ⁺)', hAtom.x, hAtom.y + 5);
+
+                    // Pares compartidos
+                    const mx = (cx + hAtom.x) / 2;
+                    const my = (cy - 10 + hAtom.y) / 2;
+                    ctx.fillStyle = '#f59e0b';
+                    ctx.beginPath();
+                    ctx.arc(mx - 4, my, 4, 0, Math.PI * 2);
+                    ctx.arc(mx + 4, my, 4, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+
+                // Arco angular de 104.5°
+                ctx.strokeStyle = '#d97706';
+                ctx.lineWidth = 1.5;
+                ctx.beginPath();
+                ctx.arc(cx, cy - 10, 30, Math.PI * 0.28, Math.PI * 0.72);
+                ctx.stroke();
+
+                ctx.fillStyle = '#d97706';
+                ctx.font = 'bold 11px Outfit, sans-serif';
+                ctx.fillText('104.5°', cx, cy + 32);
+
+                // Pares solitarios no enlazantes arriba
+                ctx.fillStyle = '#dc2626';
+                ctx.beginPath();
+                ctx.arc(cx - 16, cy - 62, 4, 0, Math.PI * 2);
+                ctx.arc(cx - 8, cy - 66, 4, 0, Math.PI * 2);
+                ctx.arc(cx + 8, cy - 66, 4, 0, Math.PI * 2);
+                ctx.arc(cx + 16, cy - 62, 4, 0, Math.PI * 2);
+                ctx.fill();
+
+                ctx.fillStyle = '#475569';
+                ctx.font = '10px Outfit, sans-serif';
+                ctx.fillText('Geometría angular (104.5°) con momento dipolar permanente (Agua biológica)', cx, h - 12);
+
+            } else {
+                // MOLÉCULAS DIATÓMICAS O2 o N2 CON SOLAPAMIENTO ORBITAL REAL
+                const isO2 = (currentCovalent === 'O2');
+                const sep = isO2 ? 72 : 62;
+                const sym = isO2 ? 'O' : 'N';
+                const bondCount = isO2 ? 2 : 3;
+
+                const a1X = cx - sep;
+                const a2X = cx + sep;
+
+                // Nube orbital compartida pi (superior e inferior)
+                ctx.fillStyle = 'rgba(67, 102, 0, 0.15)';
+                ctx.beginPath();
+                ctx.ellipse(cx, cy, sep + 35, 45, 0, 0, Math.PI * 2);
+                ctx.fill();
+
+                // Átomos
+                [a1X, a2X].forEach(ax => {
+                    const grad = ctx.createRadialGradient(ax - 6, cy - 6, 2, ax, cy, 38);
+                    if (isO2) {
+                        grad.addColorStop(0, '#fecaca');
+                        grad.addColorStop(0.5, '#ef4444');
+                        grad.addColorStop(1, '#7f1d1d');
+                    } else {
+                        grad.addColorStop(0, '#e0e7ff');
+                        grad.addColorStop(0.5, '#4f46e5');
+                        grad.addColorStop(1, '#312e81');
+                    }
+                    ctx.fillStyle = grad;
+                    ctx.beginPath();
+                    ctx.arc(ax, cy, 38, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = 'bold 22px Outfit, sans-serif';
+                    ctx.fillText(sym, ax, cy + 8);
+                });
+
+                // Líneas de enlace de valencia
+                ctx.strokeStyle = '#436600';
+                ctx.lineWidth = 3;
+                const lineSpacing = 12;
+                const startLineY = cy - ((bondCount - 1) * lineSpacing) / 2;
+
+                for (let b = 0; b < bondCount; b++) {
+                    const ly = startLineY + b * lineSpacing;
+                    ctx.beginPath();
+                    ctx.moveTo(a1X + 28, ly);
+                    ctx.lineTo(a2X - 28, ly);
+                    ctx.stroke();
+
+                    // Pares de electrones
+                    ctx.fillStyle = '#f59e0b';
+                    ctx.beginPath();
+                    ctx.arc(cx - 8, ly, 3.5, 0, Math.PI * 2);
+                    ctx.arc(cx + 8, ly, 3.5, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+
+                ctx.fillStyle = '#1e293b';
+                ctx.font = 'bold 11px Outfit, sans-serif';
+                ctx.fillText(isO2 ? 'Enlace Covalente Doble: 1 enlace σ + 1 enlace π (4 e⁻ compartidos · 121 pm)' : 'Enlace Covalente Triple: 1 enlace σ + 2 enlaces π (6 e⁻ compartidos · 110 pm)', cx, h - 12);
+            }
+        }
+
+        // =================================================================
+        // MÓDULO 4: MAR DE ELECTRONES (ENLACE METÁLICO)
+        // =================================================================
+        function setMetallicStress(mode) {
+            metallicStressMode = mode;
+            ['reposo', 'voltaje', 'calor', 'deformacion'].forEach(m => {
+                const btn = document.getElementById('btn-met-' + m);
+                if (!btn) return;
+                if (m === mode) {
+                    btn.className = 'px-3 py-1.5 rounded-lg font-bold bg-accent text-white shadow-xs transition';
+                } else {
+                    btn.className = 'px-3 py-1.5 rounded-lg font-bold bg-white text-gray-700 border border-gray-200 hover:bg-gray-100 transition';
+                }
+            });
+
+            const title = document.getElementById('met-title');
+            const desc = document.getElementById('met-desc');
+
+            if (mode === 'reposo') {
+                title.textContent = 'Modelo del Mar de Electrones en Reposo:';
+                desc.textContent = 'Los cationes metálicos ocupan posiciones reticulares regulares mientras los electrones de valencia forman un gas cuántico móvil deslocalizado.';
+            } else if (mode === 'voltaje') {
+                title.textContent = 'Conductividad Eléctrica Bajo Campo (Voltaje):';
+                desc.textContent = 'Al aplicar voltaje, los electrones libres derivan coordinadamente hacia el ánodo (+), originando corriente continua sin alterar la red (base de electroestimulación TENS).';
+            } else if (mode === 'calor') {
+                title.textContent = 'Conductividad Térmica por Electrones Libres:';
+                desc.textContent = 'El calor aumenta la agitación cinética de los electrones libres, quienes se desplazan a gran velocidad transfiriendo energía térmica por toda la red.';
+            } else {
+                title.textContent = 'Maleabilidad y Ductilidad (Deformación Plástica):';
+                desc.textContent = 'Al aplicar un impacto o fuerza de cizallamiento, los planos de cationes se desplazan unos sobre otros sin repulsión de cargas ni fractura frágil (biomateriales ortopédicos).';
+            }
+
+            drawMetallicCanvas();
+        }
+
+        function updateMetallicPhysics() {
+            const w = 520;
+            const h = 260;
+
+            metallicElectrons.forEach(p => {
+                if (metallicStressMode === 'voltaje') {
+                    // Deriva hacia la derecha con pequeña oscilación vertical
+                    p.x += 3.2;
+                    p.y += (Math.random() - 0.5) * 1.2;
+                } else if (metallicStressMode === 'calor') {
+                    // Agitación térmica browniana rápida
+                    p.x += (Math.random() - 0.5) * 5;
+                    p.y += (Math.random() - 0.5) * 5;
+                } else if (metallicStressMode === 'deformacion') {
+                    p.x += p.vx * 1.5;
+                    p.y += p.vy * 1.5;
+                } else {
+                    // Reposo térmico suave
+                    p.x += p.vx * 0.8;
+                    p.y += p.vy * 0.8;
+                }
+
+                // Rebote en fronteras
+                if (p.x < 45) p.x = w - 55;
+                if (p.x > w - 45) p.x = 55;
+                if (p.y < 40) p.y = 195;
+                if (p.y > 200) p.y = 45;
+            });
+        }
+
+        function drawMetallicCanvas() {
+            const canvas = document.getElementById('canvas-metalico');
+            if (!canvas) return;
+            const ctx = canvas.getContext('2d');
+            const w = canvas.width;
+            const h = canvas.height;
+
+            ctx.clearRect(0, 0, w, h);
+            ctx.fillStyle = '#f8fafc';
+            ctx.fillRect(0, 0, w, h);
+
+            const rows = 3;
+            const cols = 7;
+            const startX = 65;
+            const startY = 60;
+            const stepX = 65;
+            const stepY = 55;
+
+            // Desplazamiento por cizallamiento (maleabilidad)
+            const shearOffset = (metallicStressMode === 'deformacion') ? 40 : 0;
+
+            // 1. MAR DE ELECTRONES (Fondo cuántico con resplandor)
+            const gradSea = ctx.createLinearGradient(0, 0, w, h);
+            if (metallicStressMode === 'voltaje') {
+                gradSea.addColorStop(0, 'rgba(2, 132, 199, 0.1)');
+                gradSea.addColorStop(1, 'rgba(2, 132, 199, 0.25)');
+            } else if (metallicStressMode === 'calor') {
+                gradSea.addColorStop(0, 'rgba(239, 68, 68, 0.1)');
+                gradSea.addColorStop(1, 'rgba(245, 158, 11, 0.25)');
+            } else {
+                gradSea.addColorStop(0, 'rgba(67, 102, 0, 0.08)');
+                gradSea.addColorStop(1, 'rgba(67, 102, 0, 0.18)');
+            }
+            ctx.fillStyle = gradSea;
+            ctx.fillRect(40, 35, w - 80, 165);
+
+            // 2. CATIONES METÁLICOS REGULARES CON ESFERAS 3D
+            for (let r = 0; r < rows; r++) {
+                const rowShear = (r === 0) ? shearOffset : (r === 1 ? shearOffset * 0.5 : 0);
+                for (let c = 0; c < cols; c++) {
+                    const cx = startX + c * stepX + rowShear;
+                    const cy = startY + r * stepY;
+
+                    const vib = (metallicStressMode === 'calor') ? Math.sin(animClock * 20 + r * c) * 3.5 : 0;
+
+                    // Esfera metálica 3D
+                    const gradCat = ctx.createRadialGradient(cx + vib - 5, cy + vib - 5, 2, cx + vib, cy + vib, 16);
+                    gradCat.addColorStop(0, '#f1f5f9');
+                    gradCat.addColorStop(0.5, '#64748b');
+                    gradCat.addColorStop(1, '#334155');
+                    ctx.fillStyle = gradCat;
+                    ctx.beginPath();
+                    ctx.arc(cx + vib, cy + vib, 16, 0, Math.PI * 2);
+                    ctx.fill();
+
+                    ctx.fillStyle = '#ffffff';
+                    ctx.font = 'bold 10px Outfit, sans-serif';
+                    ctx.textAlign = 'center';
+                    ctx.fillText('M⁺', cx + vib, cy + vib + 3.5);
+                }
+            }
+
+            // 3. ELECTRONES DE VALENCIA DESLOCALIZADOS (Partículas con movimiento físico)
+            metallicElectrons.forEach(p => {
+                ctx.fillStyle = (metallicStressMode === 'voltaje') ? '#0284c7' :
+                                (metallicStressMode === 'calor' ? '#ef4444' : '#eab308');
+                ctx.shadowColor = ctx.fillStyle;
+                ctx.shadowBlur = (metallicStressMode === 'calor') ? 8 : 4;
+                ctx.beginPath();
+                ctx.arc(p.x, p.y, 3.5, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.shadowBlur = 0;
+            });
+
+            // Leyenda de telemetría física
+            ctx.fillStyle = '#334155';
+            ctx.font = '10px Outfit, sans-serif';
+            ctx.textAlign = 'center';
+            if (metallicStressMode === 'voltaje') {
+                ctx.fillText('Deriva electrónica coordinada hacia el ánodo (+) sin romper la red: conductividad eléctrica (TENS).', w / 2, h - 12);
+            } else if (metallicStressMode === 'deformacion') {
+                ctx.fillText('Deslizamiento de planos de cationes sin repulsión de cargas: ductilidad y maleabilidad de prótesis de titanio.', w / 2, h - 12);
+            } else if (metallicStressMode === 'calor') {
+                ctx.fillText('Transferencia ultrarrápida de energía térmica a través del gas cuántico de electrones libres.', w / 2, h - 12);
+            } else {
+                ctx.fillText('Red de cationes M⁺ inmersa en un mar de electrones de valencia deslocalizados en reposo térmico.', w / 2, h - 12);
+            }
+        }
+
+        // =================================================================
+        // MÓDULO 5: CASOS CLÍNICOS
+        // =================================================================
+        function checkCaseU403(num, opt) {
+            const fb = document.getElementById('feedback-u403-' + num);
+            if (!fb) return;
+            fb.classList.remove('hidden');
+
+            if (num === 1) {
+                if (opt === 'A') {
+                    fb.className = 'mt-2 p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-lg';
+                    fb.innerHTML = '<strong>¡Correcto!</strong> El enlace covalente peptídico posee carácter parcial de doble enlace y gran energía de disociación (>400 kJ/mol). Esto asegura la integridad molecular estructural del colágeno ante sobrecargas tensiles en ejercicios excéntricos de kinesiología.';
+                } else {
+                    fb.className = 'mt-2 p-3 bg-red-50 border border-red-200 text-red-800 rounded-lg';
+                    fb.innerHTML = '<strong>Incorrecto:</strong> Los enlaces peptídicos de las proteínas no son iónicos ni se disuelven espontáneamente por lactato muscular.';
+                }
+            } else if (num === 2) {
+                if (opt === 'A') {
+                    fb.className = 'mt-2 p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-lg';
+                    fb.innerHTML = '<strong>¡Correcto!</strong> El catión Na⁺ atrae las moléculas polares de agua por fuerzas ion-dipolo, reteniendo líquido dentro de la malla de proteoglicanos del cartílago articular. Esta hidratación otorga amortiguación hidrodinámica frente a las fuerzas de compresión.';
+                } else {
+                    fb.className = 'mt-2 p-3 bg-red-50 border border-red-200 text-red-800 rounded-lg';
+                    fb.innerHTML = '<strong>Incorrecto:</strong> En medio fisiológico acuoso el cartílago nunca cristaliza como una roca sólida; se comporta como un gel viscoelástico amortiguador.';
+                }
+            } else if (num === 3) {
+                if (opt === 'A') {
+                    fb.className = 'mt-2 p-3 bg-emerald-50 border border-emerald-200 text-emerald-800 rounded-lg';
+                    fb.innerHTML = '<strong>¡Correcto!</strong> Debido a la naturaleza no direccional del enlace metálico (mar de electrones), las aleaciones de titanio toleran microdeformaciones plásticas y cíclicas durante la bipedestación sin fracturarse de manera frágil, garantizando una excelente osteosíntesis.';
+                } else {
+                    fb.className = 'mt-2 p-3 bg-red-50 border border-red-200 text-red-800 rounded-lg';
+                    fb.innerHTML = '<strong>Incorrecto:</strong> Las placas metálicas no establecen enlaces covalentes dobles con el periostio; se fijan por compresión mecánica de tornillos e integración biológica.';
+                }
+            }
+        }
+
+        // =================================================================
+        // INICIALIZACIÓN
+        // =================================================================
+        window.addEventListener('DOMContentLoaded', () => {
+            selectLewisStructure('Ne');
+            selectCovalentType('H2O');
+            setMetallicStress('reposo');
+            switchTab('tab-lewis');
+            animationLoop();
+        });
+</script>
+</body>
+</html>
